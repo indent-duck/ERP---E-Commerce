@@ -14,6 +14,7 @@
 }
 
 .left-col, .right-col {
+    margin-top: 5px;
     border: 1px solid #EAEAEA;
     border-radius: 5px;
     min-height: 98vh;
@@ -21,12 +22,13 @@
 
 /* options bar (left)*/
 .left-col {
+    margin-right: 5px;
     background-color: #EAEAEA;
-    margin: 5px;
-    width: 20%;
+    width: 17%;
 }
 
 .top-text-container {
+    margin: 0 auto;
     min-width: 100%;
     padding-left: 12%;
     padding-bottom: 20px;
@@ -81,8 +83,7 @@
     padding-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    margin: 5px;
-    width: 80%;
+    width: 83%;
 }
 
 .right-col .card-header {
