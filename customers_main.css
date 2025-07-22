@@ -1,99 +1,78 @@
 
-/* page background */
-.container {
-    background-color: rgb(245, 252, 254);
-    min-width: 100vw;
-    min-height: 100vh;
-    max-width: 100vw;
-    max-height: 100vh;
+
+/* customer default */
+
+.container-fluid {
+
 }
 
-/* both sides (left and right) */
-.page-row {
-    display: flex;
+.customers-table-container {
+    border: 1px solid #636363;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.left-col, .right-col {
-    border: 1px solid #EAEAEA;
+.form-container {
+    max-width: 50%;
+}
+
+input[type="text"] {
+    background-color: #ebebeb;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #848484;
     border-radius: 5px;
-    min-height: 98vh;
 }
 
-/* options bar (left)*/
-.left-col {
-    background-color: #EAEAEA;
-    margin: 5px;
-    width: 20%;
-}
-
-.top-text-container {
-    min-width: 100%;
-    padding-left: 12%;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    border-bottom: 1px solid #636363;
-}
-
-.row {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.top-text-container, .text-container {
-    min-width: 100%;
-    padding-bottom: 20px;
-    padding-top: 20px;
-}
-
-.text-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#option-button-selected, #option-button {
-    min-width: 100%;
-    text-align: left;
-}
-
-.button-container {
-    min-width: 85%;
-}
-
-#option-button,#option-button-selected {
+input[type="submit"] {
+    margin-left: 5px;
     transition: background 0.2s, color 0.2s;
 }
 
-#option-button:hover,
-#option-button-selected:hover {
-    background: #000000;
-    color: #EAEAEA;
-}
-
-/* content area (right) */
-.right-col {
-    background-color: white;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin: 5px;
-    width: 80%;
-}
-
-.right-col .card-header {
-    padding-top: 10px;
-    padding-left: 15px;
-}
-
-iframe {
-    width: 100%;
-    height: 100%;
+input[type="submit"]:hover {
+    background-color: #0f0f0f;
+    color: white;
     border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.frame-container {
-    width: 100%;
-    height: 95vh;
-    max-height: 85vh;
-    margin-top: 20px;
+.bar-row {
+    display: flex;
 }
+
+.row {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+table.table {
+    border-top: 1px solid #636363;
+}
+
+.card {
+    padding: 10px;
+    text-align: center;
+}
+
+.table-container {
+    height: 300px;
+}
+
+.card, .customers-table-container {
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transform: translateY(-4px) scale(1.001);
+}
+
+.customers-table-container:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transform:  scale(1.01);
+}
+
+
+/* customer details */
