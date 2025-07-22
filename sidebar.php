@@ -9,7 +9,7 @@
 
     <div class="text-container">
         <div class="button-container" style="align-self: center;">
-            <div class="row ">
+            <div class="row mt-0">
                 <div class="col">
                     <a type="button" class="btn" href="#" id="option-button">Dashboard</a>
                 </div>

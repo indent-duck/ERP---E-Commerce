@@ -1,0 +1,56 @@
+body {
+    background-color: #f8f9fa;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #f8f9fa;
+}
+.container-fluid, .row {
+    height: 100%;
+}
+.sidebar {
+    height: 100vh; /* full viewport height */
+    width: 200px;
+    background-color: #e9ecef;
+    padding-top: 20px;
+    overflow-y: auto; /* allows scroll if content overflows */
+}
+.sidebar h5 {
+    font-weight: bold;
+}
+.sidebar .nav-link.active {
+    background-color: #343a40;
+    color: white !important;
+    border-radius: 10px;
+}
+.sidebar .nav-link {
+    color: #000;
+}
+.search-box {
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background-color: white;
+    margin: 20px;
+}
+.result-box {
+    height: auto;
+    border: 1px solid #dee2e6;
+    margin-top: 20px;
+    margin: 20px;
+    background-color: white;
+    border-radius: 10px;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+}
+.right-col {
+    margin-top: 5px;
+    border: 1px solid #EAEAEA;
+    border-radius: 5px;
+    min-height: 98vh;
+}
