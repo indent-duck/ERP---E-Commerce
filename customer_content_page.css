@@ -1,11 +1,6 @@
 
 
 /* customer default */
-
-.container-fluid {
-
-}
-
 .customers-table-container {
     border: 1px solid #636363;
     border-radius: 10px;
@@ -52,12 +47,26 @@ table.table {
 }
 
 .card {
-    padding-top: 15px;
+    padding: 10px;
     text-align: center;
 }
 
 .table-container {
     height: 300px;
+}
+
+.card, .customers-table-container {
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transform: translateY(-4px) scale(1.001);
+}
+
+.customers-table-container:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transform:  scale(1.01);
 }
 
 
