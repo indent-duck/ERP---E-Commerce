@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="template.css">
+<link rel="stylesheet" href="page_template.css">
 <div class="left-col">
     <div class="top-text-container">
         <header class="card-header">
