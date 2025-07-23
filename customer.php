@@ -69,7 +69,7 @@ $avg_spent = $total_spent / ($total_customers > 0 ? $total_customers : 1);
                             <input type="submit" value="search" class="btn btn-secondary w-100" id="top-button">
                         </div>
                         <div class="col-2">
-                            <a href="customer_default.php" class="btn btn-success" id="top-button">reset</a>
+                            <a href="customer.php" class="btn btn-success" id="top-button">reset</a>
                         </div>
                     </form>
                 </div>
