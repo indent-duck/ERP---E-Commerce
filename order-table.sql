@@ -1,8 +1,7 @@
 CREATE TABLE `orders` (
    `order_id` int(11) NOT NULL AUTO_INCREMENT,
-   `first_name` varchar(45) NOT NULL,
-   `last_name` varchar(45) NOT NULL,
-   `email` varchar(45) NOT NULL,
+   `customer_id` varchar(45) NOT NULL,
+   `item_quantity` int(11) NOT NULL,
    `total_amount` decimal(10,2) NOT NULL,
    `date_created` datetime DEFAULT current_timestamp(),
    `status` varchar(45) NOT NULL,

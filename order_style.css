@@ -1,56 +1,88 @@
 body {
     background-color: #f8f9fa;
-}
-html, body {
-    height: 100%;
     margin: 0;
-    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.container-fluid, .row {
-    height: 100%;
-}
-.sidebar {
-    height: 100vh; /* full viewport height */
-    width: 200px;
-    background-color: #e9ecef;
-    padding-top: 20px;
-    overflow-y: auto; /* allows scroll if content overflows */
-}
-.sidebar h5 {
-    font-weight: bold;
-}
-.sidebar .nav-link.active {
-    background-color: #343a40;
-    color: white !important;
-    border-radius: 10px;
-}
-.sidebar .nav-link {
-    color: #000;
-}
+
 .search-box {
     padding: 20px;
     border: 1px solid #dee2e6;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: white;
-    margin: 20px;
+    margin: 20px auto 10px auto;
+    max-width: 1000px;
 }
+
+.search-box input.form-control {
+    border-radius: 8px;
+}
+
+.search-box .btn,
+.search-box .dropdown {
+    border-radius: 8px;
+}
+
 .result-box {
-    height: auto;
     border: 1px solid #dee2e6;
-    margin-top: 20px;
-    margin: 20px;
     background-color: white;
     border-radius: 10px;
-    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+    margin: 0 auto 20px auto;
+    max-width: 1000px;
+    overflow-x: auto;
 }
-a {
-    display: inline-block;
+
+.result-box table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.result-box th,
+.result-box td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+    vertical-align: middle;
+}
+
+.result-box thead th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.result-box thead th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.result-box tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.badge {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.status-delivered {
+    background-color: #198754;
     color: white;
-    text-decoration: none;
 }
-.right-col {
-    margin-top: 5px;
-    border: 1px solid #EAEAEA;
-    border-radius: 5px;
-    min-height: 98vh;
+
+.status-shipped {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.status-processing {
+    background-color: #ffc107;
+    color: black;
+}
+
+/* Optional: for iframe responsiveness */
+html, body {
+    height: 100%;
+    width: 100%;
 }
