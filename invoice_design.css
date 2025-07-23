@@ -1,0 +1,111 @@
+body {
+    background-color: #f8f9fa;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+/* ==== SEARCH BOX ==== */
+.search-box {
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    background-color: white;
+    margin: 20px auto 10px auto;
+    max-width: 1000px;
+}
+
+.search-box input.form-control,
+.search-box .btn {
+    border-radius: 8px;
+}
+
+/* ==== INVOICE TABLE ==== */
+.result-box {
+    border: 1px solid #dee2e6;
+    background-color: white;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 1000px;
+    overflow-x: auto;
+}
+
+.result-box table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.result-box th,
+.result-box td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+    vertical-align: middle;
+}
+
+.result-box thead th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.result-box thead th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.result-box tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ==== STATUS BADGES ==== */
+.badge {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.status-delivered {
+    background-color: #198754;
+    color: white;
+}
+
+.status-shipped {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.status-processing {
+    background-color: #ffc107;
+    color: black;
+}
+
+.status-cancelled {
+    background-color: #dc3545;
+    color: white;
+}
+
+.status-pending {
+    background-color: #6c757d;
+    color: white;
+}
+
+.status-refunded {
+    background-color: #6f42c1;
+    color: white;
+}
+
+.status-completed {
+    background-color: #198754;
+    color: white;
+}
+
+.status-default {
+    background-color: #adb5bd;
+    color: white;
+}
