@@ -27,7 +27,7 @@
                         $result = $conn->query("SELECT * FROM customers WHERE customer_id = '$customer_id'");
                         $post = $result->fetch_assoc();
                         ?>
-                        <table class="table">
+                        <table class="table table-sm">
                             <colgroup>
                                 <col style="width: 30%;">
                                 <col style="width: 70%;">
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="col-6">
-                        <table class="table">
+                        <table class="table table-sm">
                             <colgroup>
                                 <col style="width: 30%;">
                                 <col style="width: 70%;">
