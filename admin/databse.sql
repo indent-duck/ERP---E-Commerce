@@ -13,7 +13,7 @@ CREATE TABLE `customers` (
    `total_spent` decimal(2,0) NOT NULL,
    `date_created` datetime DEFAULT current_timestamp(),
    PRIMARY KEY (`customer_id`)
- ) ENGINE=InnoDB AUTO_INCREMENT=1005 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
  
  CREATE TABLE `discount` (
    `order_id` int(11) NOT NULL,
