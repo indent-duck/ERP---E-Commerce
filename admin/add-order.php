@@ -3,13 +3,14 @@ $conn = new mysqli("localhost", "root", "", "erp");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $customer_id   = $_POST['customer_id'];
+    $product_id    = $_POST['product_id'];
     $item_quantity = $_POST['item_quantity'];
     $total_amount  = $_POST['total_amount'];
     $status        = $_POST['status'];
     $payment       = $_POST['payment'];
 
-    $conn->query("INSERT INTO orders (customer_id, item_quantity, total_amount, status, payment) 
-                  VALUES ('$customer_id', '$item_quantity', '$total_amount', '$status', '$payment')");
+    $conn->query("INSERT INTO orders (customer_id, 'product_id', item_quantity, total_amount, status, payment) 
+                  VALUES ('$customer_id', '$product_id', '$item_quantity', '$total_amount', '$status', '$payment')");
 
     header("Location: order.php");
     exit();
@@ -35,6 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="col-md-6">
         <label class="form-label">Customer ID</label>
         <input type="text" name="customer_id" class="form-control" required>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Product ID</label>
+        <input type="text" name="product_id" class="form-control" required>
       </div>
 
       <div class="col-md-6">
