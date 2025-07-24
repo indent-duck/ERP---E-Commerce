@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "erp");
+$conn = new mysqli("localhost", "root", "", "erp_db");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -7,7 +7,7 @@ if ($conn->connect_error) {
 $search = '';
 if (isset($_GET['search'])) {
     $search = trim($_GET['search']);
-    $stmt = $conn->prepare("SELECT * FROM orders WHERE customer_name LIKE CONCAT('%', ?, '%') OR customer_email LIKE CONCAT('%', ?, '%') ORDER BY order_date DESC");
+    $stmt = $conn->prepare("SELECT * FROM orders WHERE customer_name LIKE CONCAT('%', ?, '%') OR customer_email LIKE CONCAT('%', ?, '%') ORDER BY date_created DESC");
     $stmt->bind_param("ss", $search, $search);
     $stmt->execute();
     $result = $stmt->get_result();

@@ -58,8 +58,10 @@
                     <tr>
                         <th>Order ID</th>
                         <th>Customer ID</th>
+                        <th>Product ID</th>
                         <th>Item Qty</th>
                         <th>Total</th>
+                        <th>Discount</th>
                         <th>Date</th>
                         <th>Status</th>
                         <th>Payment</th>
@@ -87,16 +89,18 @@
 
                         if (!empty($search)) {
                             if (is_numeric($search)) {
-                                $sql .= " AND (order_id = ? OR customer_id LIKE ?)";
+                                $sql .= " AND (order_id = ? OR customer_id LIKE ? OR product_id LIKE ?)";
                                 $params[] = (int)$search;
                                 $like = "%" . $search . "%";
                                 $params[] = $like;
-                                $types .= "is";
+                                $params[] = $like;
+                                $types .= "iss";
                             } else {
-                                $sql .= " AND customer_id LIKE ?";
+                                $sql .= " AND customer_id LIKE ? OR product_id LIKE ?";
                                 $like = "%" . $search . "%";
                                 $params[] = $like;
-                                $types .= "s";
+                                $params[] = $like;
+                                $types .= "ss";
                             }
                         }
 
@@ -113,8 +117,10 @@
                             while ($row = $result->fetch_assoc()) {
                                 $orderId = str_pad($row["order_id"], 5, "0", STR_PAD_LEFT);
                                 $customerId = htmlspecialchars($row["customer_id"]);
+                                $productId = htmlspecialchars($row["product_id"]);
                                 $quantity = $row["item_quantity"];
                                 $total = "₱" . number_format($row["total_amount"], 2);
+                                $discount = "₱" . number_format($row["discount"], 2);
                                 $date = date("Y-m-d", strtotime($row["date_created"]));
                                 $status = $row["status"];
                                 $payment = $row["payment"];
@@ -131,8 +137,10 @@
                                 <tr>
                                     <td>$orderId</td>
                                     <td>$customerId</td>
+                                    <td>$productId</td>
                                     <td>$quantity</td>
                                     <td>$total</td>
+                                    <td>$discount</td>
                                     <td>$date</td>
                                     <td><span class='badge $badgeClass'>$status</span></td>
                                     <td>$payment</td>
