@@ -26,7 +26,7 @@
             name="search" 
             class="form-control" 
             style="border-radius: 10px; max-width: 500px;" 
-            placeholder="Search by Order ID or Customer ID" 
+            placeholder="Search by Order ID or Customer ID or Product ID" 
             value="<?= htmlspecialchars($searchTerm) ?>" 
         />
 
