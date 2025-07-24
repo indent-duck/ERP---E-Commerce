@@ -80,7 +80,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="table-container">
-                            <table class="table table-hover">
+                            <table class="table table-hover table-md">
                                 <colgroup>
                                     <col style="width:15%">
                                     <col style="width:25%">

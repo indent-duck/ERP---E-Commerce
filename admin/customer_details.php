@@ -64,8 +64,8 @@
                     <div class="col-6">
                         <table class="table table-sm">
                             <colgroup>
-                                <col style="width: 30%;">
-                                <col style="width: 70%;">
+                                <col style="width: 35%;">
+                                <col style="width: 65%;">
                             </colgroup>
                             <tbody>
                                 <tr>
