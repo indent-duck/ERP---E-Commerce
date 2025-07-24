@@ -1,22 +1,4 @@
-<?php 
-
-$conn = new mysqli("localhost", "root", "", "erp_db");
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['search'])) {
-    $id_search = $_POST['search'];
-    $result = $conn->query("SELECT * FROM customers WHERE customer_id = '$id_search'");
-} else {
-    $result = $conn->query("SELECT * FROM customers");
-}
-
-$total_customers = $conn->query("SELECT COUNT(*) as count FROM customers")->fetch_assoc()['count'];
-$new_customers = $conn->query("SELECT COUNT(*) as count FROM customers WHERE MONTH(date_created) = MONTH(CURRENT_DATE())")->fetch_assoc()['count'];
-$total_spent = $conn->query("SELECT SUM(total_spent) as total FROM customers")->fetch_assoc()['total'];
-$avg_spent = $total_spent / ($total_customers > 0 ? $total_customers : 1);
-?>
+<?php include 'db_connection.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +12,15 @@ $avg_spent = $total_spent / ($total_customers > 0 ? $total_customers : 1);
     <body>
         <div class="container-fluid">
 
+            <!-- customer dashboard details -->
+            <?php
 
+            $total_customers = $conn->query("SELECT COUNT(*) as count FROM customers")->fetch_assoc()['count'];
+            $new_customers = $conn->query("SELECT COUNT(*) as count FROM customers WHERE MONTH(date_created) = MONTH(CURRENT_DATE())")->fetch_assoc()['count'];
+            $total_spent = $conn->query("SELECT SUM(total_spent) as total FROM customers")->fetch_assoc()['total'];
+            $avg_spent = $total_spent / ($total_customers > 0 ? $total_customers : 1);
+
+            ?>
             <div class="row">
                 <div class="col-4">
                     <div class="card" style="border: 1px solid #848484; border-radius: 10px;">
@@ -59,11 +49,23 @@ $avg_spent = $total_spent / ($total_customers > 0 ? $total_customers : 1);
             </div>
 
             <div class="customers-table-container">
+
+                <!-- search bar -->
+                <?php
+
+                if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['search'])) {
+                    $customer_search = $_POST['search'];
+                    $result = $conn->query("SELECT * FROM customers WHERE CONCAT(first_name, ' ', last_name) LIKE  '%$customer_search%'");
+                } else {
+                    $result = $conn->query("SELECT * FROM customers");
+                }
+
+                ?>
                 <div class="form-container" id="search-bar">
                     <form method="POST" class="row">
                         <label for="search-bar">Search Customer</label>
                         <div class="col-8">
-                            <input type="text" class="form-control-sm" placeholder="Enter Customer ID" id="search-bar" name="search">
+                            <input type="text" class="form-control-sm" placeholder="customer name" id="search-bar" name="search">
                         </div>
                         <div class="col-2">
                             <input type="submit" value="search" class="btn btn-secondary w-100" id="top-button">
@@ -74,7 +76,7 @@ $avg_spent = $total_spent / ($total_customers > 0 ? $total_customers : 1);
                     </form>
                 </div>
 
-
+                <!-- table -->
                 <div class="row">
                     <div class="col">
                         <div class="table-container">
@@ -112,7 +114,7 @@ $avg_spent = $total_spent / ($total_customers > 0 ? $total_customers : 1);
                                         </td>
                                     </tr>
                                 </tbody>
-                                <?php } 
+                                <?php }
                                 } else { ?>
                                     <tbody>
                                         <tr>
