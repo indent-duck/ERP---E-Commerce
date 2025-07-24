@@ -24,7 +24,7 @@
                     <!-- customer details table -->
                         <?php
                         $customer_id = $_GET['id'];
-                        $result = $customer_conn->query("SELECT * FROM customers WHERE customer_id = '$customer_id'");
+                        $result = $conn->query("SELECT * FROM customers WHERE customer_id = '$customer_id'");
                         $post = $result->fetch_assoc();
                         ?>
                         <table class="table">
