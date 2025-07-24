@@ -1,15 +1,4 @@
-<?php 
-
-$customer_conn = new mysqli("localhost", "root", "", "erp_db");
-if ($customer_conn->connect_error) {
-    die("Connection failed: " . $customer_conn->connect_error);
-}
-
-$customer_id = $_GET['id'];
-$result = $customer_conn->query("SELECT * FROM customers WHERE customer_id = '$customer_id'");
-$post = $result->fetch_assoc();
-?>
-
+<?php include 'db_connection.php';?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,6 +20,13 @@ $post = $result->fetch_assoc();
                 <div class="row">
 
                     <div class="col-6">
+                    
+                    <!-- customer details table -->
+                        <?php
+                        $customer_id = $_GET['id'];
+                        $result = $customer_conn->query("SELECT * FROM customers WHERE customer_id = '$customer_id'");
+                        $post = $result->fetch_assoc();
+                        ?>
                         <table class="table">
                             <colgroup>
                                 <col style="width: 30%;">
