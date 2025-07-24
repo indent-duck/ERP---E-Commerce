@@ -23,7 +23,7 @@
             ?>
             <div class="row">
                 <div class="col-4">
-                    <div class="card" style="border: 1px solid #848484; border-radius: 10px;">
+                    <div class="card" style="border: 1px solid #dee2e6; border-radius: 10px;">
                         <h2 class="text-success"><?= $total_customers ?></h2>
                         <div class="card-text">
                             <h6>Total Customers</h6>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="card" style="border: 1px solid #848484; border-radius: 10px;">
+                    <div class="card" style="border: 1px solid #dee2e6; border-radius: 10px;">
                         <h2 class="text-primary"><?= $new_customers ?></h2>
                         <div class="card-text">
                             <h6>New this Month</h6>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="card" style="border: 1px solid #848484; border-radius: 10px;">
+                    <div class="card" style="border: 1px solid #dee2e6; border-radius: 10px;">
                         <h2 class="text-danger">₱<?= $avg_spent ?></h2>
                         <div class="card-text">
                             <h6>Avg. value spent per Customer</h6>
