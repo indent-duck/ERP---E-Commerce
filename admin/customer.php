@@ -55,7 +55,10 @@
 
                 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['search'])) {
                     $customer_search = $_POST['search'];
-                    $result = $conn->query("SELECT * FROM customers WHERE CONCAT(first_name, ' ', last_name) LIKE  '%$customer_search%'");
+                    $result = $conn->query("SELECT * FROM customers WHERE first_name LIKE '$customer_search%' OR last_name LIKE '$customer_search%' 
+                    ORDER BY
+                    CASE WHEN first_name LIKE '$customer_search%' THEN 0
+                    ELSE 1 END, first_name, last_name");
                 } else {
                     $result = $conn->query("SELECT * FROM customers");
                 }
