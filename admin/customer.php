@@ -93,11 +93,11 @@
                                 </colgroup>
                                 <thead>
                                     <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Customer</th>
-                                        <th scope="col">Total Orders</th>
-                                        <th scope="col">Total Spent</th>
-                                        <th scope="col">Actions</th>
+                                        <th scope="col" class="table-light">ID</th>
+                                        <th scope="col" class="table-light">Customer</th>
+                                        <th scope="col" class="table-light">Total Orders</th>
+                                        <th scope="col" class="table-light">Total Spent</th>
+                                        <th scope="col" class="table-light">Actions</th>
                                     </tr>
                                 </thead>
                                 <?php

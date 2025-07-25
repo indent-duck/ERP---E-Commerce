@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "erp");
+$conn = new mysqli("localhost", "root", "", "erp_db");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $customer_id   = $_POST['customer_id'];
