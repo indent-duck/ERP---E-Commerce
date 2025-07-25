@@ -12,11 +12,11 @@ USE erp_db;
    `credit_card_no` int(15) DEFAULT NULL,
    `date_created` datetime NOT NULL DEFAULT current_timestamp(),
    PRIMARY KEY (`customer_id`)
- ) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+ ) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
  
  CREATE TABLE `discount` (
    `order_id` int(11) NOT NULL,
-   `discout` decimal(2,2) NOT NULL,
+   `discount` decimal(2,2) NOT NULL,
    PRIMARY KEY (`order_id`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
  
@@ -31,7 +31,7 @@ USE erp_db;
    `date_placed` datetime NOT NULL,
    `date_completed` datetime NOT NULL DEFAULT current_timestamp(),
    PRIMARY KEY (`order_id`)
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
  
  CREATE TABLE `orders` (
    `order_id` int(11) NOT NULL AUTO_INCREMENT,
