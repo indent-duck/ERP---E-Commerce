@@ -24,7 +24,7 @@ CREATE TABLE `customers` (
  CREATE TABLE `invoices` (
    `order_id` int(11) NOT NULL,
    `customer_id` int(11) NOT NULL,
-   `product_name` int(11) NOT NULL,
+   `product_name` varchar(45) NOT NULL,
    `product_quantity` varchar(45) NOT NULL,
    `product_price` decimal(10,2) NOT NULL,
    `discount_applied` decimal(2,2) NOT NULL,
