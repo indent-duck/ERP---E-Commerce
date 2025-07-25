@@ -1,4 +1,24 @@
-<?php include 'db_connection.php';?>
+<?php include 'db_connection.php';
+
+function textColor($percentage) {
+    return $percentage > 0 ? 'positive' : 'negative';
+}
+
+function getPercentage($prev_month, $current_month) {
+    if ($prev_month > 0) {
+        $difference = 100 * (($current_month - $prev_month) / $prev_month);
+        $difference = number_format($difference, 2);
+        if ($difference >= 0) {
+            return "+$difference";
+        } elseif ($difference < 0) {
+            return "$difference";
+        }
+    } else {
+        return "0";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -50,29 +70,17 @@
                     </div>
                 </div>
 
-
-                
-                <!-- balikan ko to, ggym lang ako saglit -->
-
                 <?php
                 $products_sold = $conn->query("SELECT COUNT(*) AS total_sold FROM invoices")->fetch_assoc()['total_sold'];
                 $current_month_sales = $conn->query("SELECT COUNT(*) AS current_sales FROM invoices WHERE month(date_placed) = MONTH(CURRENT_DATE());")->fetch_assoc()['current_sales'];
                 $prev_month_sales =  $conn->query("SELECT COUNT(*) AS prev_sales FROM invoices WHERE month(date_placed) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH);")->fetch_assoc()['prev_sales'];
-                $percentage = "";
-                if ($prev_month_sales > 0) {
-                    $difference = 100 * (($current_month_sales - $prev_month_sales) / $prev_month_sales);
-                    if ($difference > 0) {
-                        $percentage = "+$difference";
-                    }
-                } else {
-                    $percentage = "0";
-                }
+                $percentage = getPercentage($prev_month_sales, $current_month_sales);
                 ?>
                 <div class="col-6">
                     <div class="card" style="border: 1px solid #dee2e6; border-radius: 10px;">
                         <h5 class="text-secondary">Products Sold</h5>
                         <h2 class="text-dark"><?= $products_sold ?></h2>
-                        <div class="card-text">
+                        <div class="card-text <?= textColor($percentage) ?>">
                             <caption class="card-caption"><?= $percentage ?>% than previous month</caption>
                         </div>
                     </div>
