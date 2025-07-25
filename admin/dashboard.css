@@ -1,0 +1,28 @@
+
+.container-fluid {
+    padding: 20px;
+}
+
+.row {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.card {
+    text-align: left;
+    padding: 20px;
+    padding-left: 7%;
+}
+
+.card-text {
+    color: #27AC49;
+}
+
+.card {
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transform: scale(1.001);
+}
