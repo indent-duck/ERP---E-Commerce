@@ -37,7 +37,7 @@ function numberSign($percentage) {
             ?>
             <div class="row">
                 <div class="col-6">
-                    <div class="card" style="border: 1px solid #dee2e6; border-radius: 10px;">
+                    <div class="card">
                         <h5 class="text-secondary">Total Revenue</h5>
                         <h2 class="text-dark">₱ <?= $total_revenue ?></h2>
                         <div class="card-text <?= textColor($revenue_percentage) ?>">
@@ -46,7 +46,7 @@ function numberSign($percentage) {
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="card" style="border: 1px solid #dee2e6; border-radius: 10px;">
+                    <div class="card">
                         <h5 class="text-secondary">Active Orders</h5>
                         <h2 class="text-dark">10</h2>
                         <div class="card-text">
@@ -64,7 +64,7 @@ function numberSign($percentage) {
             ?>
             <div class="row">
                 <div class="col-6">
-                    <div class="card" style="border: 1px solid #dee2e6; border-radius: 10px;">
+                    <div class="card">
                         <h5 class="text-secondary">Customers</h5>
                         <h2 class="text-dark"><?= $total_customers ?></h2>
                         <div class="card-text"" style="color: #27AC49">
@@ -80,7 +80,7 @@ function numberSign($percentage) {
                     / (SELECT COUNT(*) FROM invoices WHERE MONTH(date_placed) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH)) as percentage;")->fetch_assoc()['percentage'];
                 ?>
                 <div class="col-6">
-                    <div class="card" style="border: 1px solid #dee2e6; border-radius: 10px;">
+                    <div class="card">
                         <h5 class="text-secondary">Products Sold</h5>
                         <h2 class="text-dark"><?= $products_sold ?></h2>
                         <div class="card-text <?= textColor($products_percentage) ?>">
