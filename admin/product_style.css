@@ -1,0 +1,30 @@
+body {
+    background-color: #f8f9fa;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.full-height {
+  min-height: 100vh;
+}
+
+.search-input {
+  border-radius: 10px;
+  max-width: 500px;
+}
+
+.filter-dropdown {
+  border-radius: 10px;
+  width: 192px;
+}
+
+.product-row {
+  height: 70px;
+}
+
+.see-more-link {
+  text-decoration: underline;
+  font-weight: 500;
+  color: #212529; /* Bootstrap's 'text-dark' */
+
+}

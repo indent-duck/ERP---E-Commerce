@@ -9,6 +9,8 @@
 }
 
 .card {
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
     text-align: left;
     padding: 20px;
     padding-left: 7%;
