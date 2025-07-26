@@ -49,11 +49,11 @@
           <?= htmlspecialchars($statusFilter === 'All' ? 'All Status' : $statusFilter) ?>
         </button>
         <ul class="dropdown-menu w-100">
-            <li><a class="dropdown-item" href="return_refund.php?search=<?= urlencode($searchTerm) ?>">All</a></li>
-            <li><a class="dropdown-item" href="return_refund.php?status=Pending&search=<?= urlencode($searchTerm) ?>">Pending</a></li>
-            <li><a class="dropdown-item" href="return_refund.php?status=Approved&search=<?= urlencode($searchTerm) ?>">Approved</a></li>
-            <li><a class="dropdown-item" href="return_refund.php?status=Rejected&search=<?= urlencode($searchTerm) ?>">Rejected</a></li>
-            <li><a class="dropdown-item" href="return_refund.php?status=Returned&search=<?= urlencode($searchTerm) ?>">Returned</a></li>
+            <li><a class="dropdown-item" href="returns_refund.php?search=<?= urlencode($searchTerm) ?>">All</a></li>
+            <li><a class="dropdown-item" href="returns_refund.php?status=Pending&search=<?= urlencode($searchTerm) ?>">Pending</a></li>
+            <li><a class="dropdown-item" href="returns_refund.php?status=Approved&search=<?= urlencode($searchTerm) ?>">Approved</a></li>
+            <li><a class="dropdown-item" href="returns_refund.php?status=Rejected&search=<?= urlencode($searchTerm) ?>">Rejected</a></li>
+            <li><a class="dropdown-item" href="returns_refund.php?status=Returned&search=<?= urlencode($searchTerm) ?>">Returned</a></li>
         </ul>
     </div>
 
@@ -65,7 +65,7 @@
     <!-- Clear Button (Fixed Width) -->
     <?php if (!empty($searchTerm) || ($statusFilter !== 'All')): ?>
         <div style="width: 130px;">
-            <a href="return_refund.php" class="btn btn-outline-danger w-100">Clear</a>
+            <a href="returns_refund.php" class="btn btn-outline-danger w-100">Clear</a>
         </div>
     <?php endif; ?>
     </form>
@@ -118,7 +118,7 @@
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 $orderId = str_pad($row["order_id"], 5, "0", STR_PAD_LEFT);
-                                $date = date("Y-m-d H:i", strtotime($row["date_requested"]));
+                                $date = date("Y-m-d", strtotime($row["date_requested"]));
                                 $status = htmlspecialchars($row["status"]);
 
                                 $badgeClass = match(strtolower($status)) {
@@ -129,9 +129,7 @@
                                     default => "bg-secondary text-light",
                                 };
 
-                                $description = ($status === "Returned") 
-                                    ? "<a href='approve_refund.php?order_id={$row["order_id"]}' class='btn btn-sm btn-outline-success'>Approve and refund customer</a>"
-                                    : "-";
+                                $description = ($status === "Returned") ? "Approve and refund customer" : "-";
 
                                 echo "
                                     <tr>
