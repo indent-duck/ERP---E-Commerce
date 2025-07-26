@@ -41,13 +41,13 @@
 
         <!-- Status Filter Dropdown -->
         <div class="dropdown" style="width: 130px;">
-        <button 
-            class="btn btn-outline-secondary dropdown-toggle w-100" 
-            type="button" 
-            data-bs-toggle="dropdown" 
-            aria-expanded="false">
-          <?= htmlspecialchars($statusFilter === 'All' ? 'All Status' : $statusFilter) ?>
-        </button>
+            <button 
+                class="btn btn-outline-secondary dropdown-toggle w-100" 
+                type="button" 
+                data-bs-toggle="dropdown" 
+                aria-expanded="false">
+            <?= htmlspecialchars($statusFilter === 'All' ? 'All Status' : $statusFilter) ?>
+            </button>
         <ul class="dropdown-menu w-100">
             <li><a class="dropdown-item" href="returns_refund.php?search=<?= urlencode($searchTerm) ?>">All</a></li>
             <li><a class="dropdown-item" href="returns_refund.php?status=Pending&search=<?= urlencode($searchTerm) ?>">Pending</a></li>
