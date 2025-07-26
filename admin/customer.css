@@ -1,6 +1,4 @@
 
-
-/* ----- customer default ----- */
 .customers-table-container {
     border: 1px solid #dee2e6;
     border-radius: 10px;
@@ -77,5 +75,6 @@ table.table {
     cursor: pointer;
 }
 
-
-/* ----- customer details ----- */
+td.positive {
+    color:  #27AC49;
+}

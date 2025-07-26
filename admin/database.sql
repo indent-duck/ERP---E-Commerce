@@ -30,8 +30,9 @@ USE erp_db;
    `status` varchar(15) NOT NULL,
    `date_placed` datetime NOT NULL,
    `date_completed` datetime NOT NULL DEFAULT current_timestamp(),
+   `payment` varchar(15) DEFAULT NULL,
    PRIMARY KEY (`order_id`)
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
  
  CREATE TABLE `orders` (
    `order_id` int(11) NOT NULL AUTO_INCREMENT,
