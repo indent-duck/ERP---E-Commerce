@@ -92,7 +92,7 @@ function numberSign($percentage) {
                 </div>
 
                 <?php
-                $products_sold = $conn->query("SELECT COUNT(*) AS total_sold FROM invoices")->fetch_assoc()['total_sold'];
+                $products_sold = $conn->query("SELECT COUNT(*) AS total_sold FROM invoices WHERE MONTH(date_placed) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH);")->fetch_assoc()['total_sold'];
                 $products_percentage = $conn->query("SELECT 100 * ((SELECT COUNT(*) FROM invoices WHERE MONTH(date_placed) = MONTH(CURRENT_DATE()))
                     - (SELECT COUNT(*) FROM invoices WHERE MONTH(date_placed) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH)))
                     / (SELECT COUNT(*) FROM invoices WHERE MONTH(date_placed) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH)) as percentage;")->fetch_assoc()['percentage'];
