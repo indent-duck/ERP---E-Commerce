@@ -70,10 +70,10 @@
                     </div>
                     
                     <?php
-                    $invoice_orders = $conn->query("SELECT COALESCE(COUNT(i.customer_id), 0) as total FROM customers c 
+                    $invoice_orders = $conn->query("SELECT COALESCE(COUNT(i.customer_id), 0) as total FROM customers c
                         INNER JOIN invoices i ON i.customer_id = c.customer_id
                         WHERE c.customer_id = $customer_id;")->fetch_assoc()['total'];
-                    $order_orders = $conn->query("SELECT COALESCE(COUNT(o.customer_id), 0) as total FROM customers c 
+                    $order_orders = $conn->query("SELECT COALESCE(COUNT(o.customer_id), 0) as total FROM customers c
                         INNER JOIN orders o ON o.customer_id = c.customer_id
                         WHERE c.customer_id = $customer_id;")->fetch_assoc()['total'];
                     $total_orders = $invoice_orders + $order_orders;
@@ -119,7 +119,7 @@
                             p.retail_price as item_price,
                             o.discount as discount,
                             o.total_amount as sum_total,
-                            o.date_created as date_placed,
+                            o.date_placed as date_placed,
                             'processing' as date_completed,
                             o.status as status
                         FROM orders o
@@ -192,8 +192,8 @@
                                 <tr>
                                     <th><?= $invoice['order_id'] ?></th>
                                     <td><?= $invoice['item'] ?> <label class="text-secondary" style="font-size: 14px;">x<?= $invoice['qty']?></label></td>
-                                    <td>₱ <?= $invoice['item_price'] ?></td>
-                                    <td>₱ <?= $invoice['sum_total'] ?></td>
+                                    <td>₱ <?= number_format($invoice['item_price'], 2) ?></td>
+                                    <td>₱ <?= number_format($invoice['sum_total'], 2) ?></td>
                                     <td><?= $invoice['date_placed'] ?></td>
                                     <td><?= $invoice['date_completed'] ?></td>
                                     <td> <span class="badge <?= $status_color?>"> <?= $invoice['status']; ?></span></td>

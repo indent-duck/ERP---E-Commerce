@@ -19,7 +19,10 @@
             $new_customers = $conn->query("SELECT COUNT(*) as count FROM customers WHERE MONTH(date_created) = MONTH(CURRENT_DATE())")->fetch_assoc()['count'];
             $invoice_sum_total = $conn->query("SELECT SUM(total_payment) as total FROM invoices WHERE status != 'returned';")->fetch_assoc()['total'];
             $orders_sum_total = $conn->query("SELECT SUM(total_amount) as total FROM orders WHERE payment != 'COD';")->fetch_assoc()['total'];
-            $avg_spent = ($invoice_sum_total + $orders_sum_total) / $total_customers;
+            $avg_spent = 0;
+            if (isset($invoice_sum) || isset($orders_sum_total)) {
+                $avg_spent = ($invoice_sum_total + $orders_sum_total) / $total_customers;
+            }
             ?>
             <div class="row">
                 <div class="col-4">
@@ -128,7 +131,7 @@
                                         <td class="text-start"><?= htmlspecialchars($row['first_name']) ?> <?= htmlspecialchars($row['last_name']) ?></td>
                                         <td class="text-<?=$textColor?>"><?= $active_total ?></td>
                                         <td><?= $total_orders ?></td>
-                                        <td class="text-start">₱ <?= $total_spent ?></td>
+                                        <td class="text-start">₱ <?= number_format($total_spent, 2) ?></td>
                                         <td>
                                             <a href="customer_details.php?id=<?= $row['customer_id'] ?>" class="btn btn-primary btn-sm" id="detail-button">View Details</a>
                                         </td>
@@ -138,7 +141,7 @@
                                 } else { ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="5" class="text-center">No results found</td>
+                                            <td colspan="6" class="text-center">No results found</td>
                                         </tr>
                                     </tbody>
                                 <?php } ?>
@@ -146,7 +149,6 @@
                         </div>
                     </div>
                 </div>
-
 
             </div>
 

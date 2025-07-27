@@ -1,11 +1,11 @@
 <?php include 'db_connection.php';
 
 function textColor($percentage) {
-    return $percentage > 0 ? 'positive' : 'negative';
+    return $percentage >= 0 ? 'positive' : 'negative';
 }
 
 function numberSign($percentage) {
-    return $percentage > 0 ? "+" : "";
+    return $percentage >= 0 ? "+" : "";
 }
 
 ?>
@@ -20,11 +20,17 @@ function numberSign($percentage) {
     </head>
     <body>
         <div class="container-fluid">
+            
+            <div class="row">
+                <div class="col">
+                    <h4 class="text-secondary" style="margin-bottom: 0px;">This Month</h4>
+                </div>
+            </div>
 
             <!-- 1st card row -->
             <?php
-            $total_revenue = $conn->query("SELECT SUM(a.total_payment) - SUM(a.quantity * b.cost_price) as total FROM invoices a
-                INNER JOIN products b ON a.product_id = b.product_id;")->fetch_assoc()['total'];
+            $monthly_revenue = $conn->query("SELECT SUM(a.total_payment) - SUM(a.quantity * b.cost_price) as total FROM invoices a
+                INNER JOIN products b ON a.product_id = b.product_id WHERE MONTH(a.date_placed) = MONTH(CURRENT_DATE());")->fetch_assoc()['total'] ?? 0;
             $revenue_percentage = $conn->query("SELECT 100 * ((SELECT SUM(p.cost_price * i.quantity) FROM invoices i
                 INNER JOIN products p ON p.product_id = i.product_id
                 WHERE MONTH(i.date_placed) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH))
@@ -39,18 +45,30 @@ function numberSign($percentage) {
                 <div class="col-6">
                     <div class="card">
                         <h5 class="text-secondary">Total Revenue</h5>
-                        <h2 class="text-dark">₱ <?= $total_revenue ?></h2>
+                        <h2 class="text-dark">₱ <?= number_format($monthly_revenue, 2) ?></h2>
                         <div class="card-text <?= textColor($revenue_percentage) ?>">
-                            <caption class="card-caption"><?= numberSign($revenue_percentage).number_format($revenue_percentage, 0) ?>% than last month</caption>
+                            <caption class="card-caption"><?= numberSign($revenue_percentage).number_format($revenue_percentage, 0) ?>% than previous month</caption>
                         </div>
                     </div>
                 </div>
+                <?php
+
+                $current_orders = $conn->query("SELECT COUNT(order_id) as month_orders FROM orders WHERE MONTH(date_placed) = MONTH(CURRENT_DATE());")->fetch_assoc()['month_orders'] ?? 0;
+                $invoice_orders = $conn->query("SELECT COUNT(order_id) as invoice_orders FROM invoices WHERE MONTH(date_placed) = MONTH(CURRENT_DATE());")->fetch_assoc()['invoice_orders'] ?? 0;
+                $current_month = $current_orders + $invoice_orders;
+
+                $prev_orders = $conn->query("SELECT COUNT(order_id) as month_orders FROM orders WHERE MONTH(date_placed) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH);")->fetch_assoc()['month_orders'] ?? 0;
+                $prev_invoice_orders = $conn->query("SELECT COUNT(order_id) as invoice_orders FROM invoices WHERE MONTH(date_placed) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH);")->fetch_assoc()['invoice_orders'] ?? 0;
+                $prev_month = $prev_orders + $prev_invoice_orders;
+
+                $order_percentage = 100 * ($prev_month != 0 ? (($current_month - $prev_month) / $prev_month) : 0);
+                ?>
                 <div class="col-6">
                     <div class="card">
-                        <h5 class="text-secondary">Active Orders</h5>
-                        <h2 class="text-dark">10</h2>
-                        <div class="card-text">
-                            <caption class="card-caption">100</caption>
+                        <h5 class="text-secondary">Orders</h5>
+                        <h2 class="text-dark"><?= $current_month ?></h2>
+                        <div class="card-text <?= textColor($order_percentage); ?>">
+                            <caption class="card-caption"><?= numberSign($order_percentage).number_format($order_percentage, 0); ?>% than previous month</caption>
                         </div>
                     </div>
                 </div>

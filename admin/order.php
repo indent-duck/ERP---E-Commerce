@@ -69,10 +69,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        $conn = new mysqli("localhost", "root", "", "erp_db");
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
+                        include 'db_connection.php';
 
                         $search = trim($_GET['search'] ?? '');
                         $statusFilter = $_GET['status'] ?? '';
@@ -121,7 +118,7 @@
                                 $quantity = $row["item_quantity"];
                                 $total = "₱" . number_format($row["total_amount"], 2);
                                 $discount = "₱" . number_format($row["discount"], 2);
-                                $date = date("Y-m-d", strtotime($row["date_created"]));
+                                $date = date("Y-m-d", strtotime($row["date_placed"]));
                                 $status = $row["status"];
                                 $payment = $row["payment"];
 
