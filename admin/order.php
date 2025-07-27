@@ -16,10 +16,11 @@
     </div>
 
     <!-- Search and Filter Form -->
-    <form method="GET" class="search-box mt-4 border rounded shadow-sm d-flex gap-2 align-items-center justify-content-between">
+    <form method="GET" class="search-box mt-4 border rounded shadow-sm p-3 d-flex flex-wrap align-items-center gap-2 justify-content-start"
+      style="max-width: 100%;">
         <?php
-          $currentStatus = $_GET['status'] ?? 'All';
-          $searchTerm = $_GET['search'] ?? '';
+            $currentStatus = $_GET['status'] ?? 'All';
+            $searchTerm = $_GET['search'] ?? '';
         ?>
         <input 
             type="text" 
@@ -31,23 +32,35 @@
         />
 
         <!-- Dropdown -->
-        <div class="dropdown" style="width: 150px;">
+        <div class="dropdown ms-4" style="width: 130px;">
             <button 
                 class="btn btn-outline-secondary dropdown-toggle w-100" 
                 style="border-radius: 10px;" 
                 type="button" 
                 data-bs-toggle="dropdown" 
                 aria-expanded="false">
-              <?= htmlspecialchars($currentStatus === 'All' ? 'All Status' : $currentStatus) ?>
+            <?= htmlspecialchars($currentStatus === 'All' ? 'All Status' : $currentStatus) ?>
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="order.php?search=<?= urlencode($searchTerm) ?>">All</a></li>
-              <li><a class="dropdown-item" href="order.php?status=Processing&search=<?= urlencode($searchTerm) ?>">Processing</a></li>
-              <li><a class="dropdown-item" href="order.php?status=Shipped&search=<?= urlencode($searchTerm) ?>">Shipped</a></li>
-              <li><a class="dropdown-item" href="order.php?status=Delivered&search=<?= urlencode($searchTerm) ?>">Delivered</a></li>
-              <li><a class="dropdown-item" href="order.php?status=Cancelled&search=<?= urlencode($searchTerm) ?>">Cancelled</a></li>
+            <li><a class="dropdown-item" href="order.php?search=<?= urlencode($searchTerm) ?>">All</a></li>
+            <li><a class="dropdown-item" href="order.php?status=Processing&search=<?= urlencode($searchTerm) ?>">Processing</a></li>
+            <li><a class="dropdown-item" href="order.php?status=Shipped&search=<?= urlencode($searchTerm) ?>">Shipped</a></li>
+            <li><a class="dropdown-item" href="order.php?status=Delivered&search=<?= urlencode($searchTerm) ?>">Delivered</a></li>
+            <li><a class="dropdown-item" href="order.php?status=Cancelled&search=<?= urlencode($searchTerm) ?>">Cancelled</a></li>
             </ul>
         </div>
+
+        <!-- Search Button (Fixed Width) -->
+        <div style="width: 130px;">
+            <button type="submit" class="btn btn-outline-dark w-100">Search</button>
+        </div>
+
+        <!-- Clear Button (Fixed Width) -->
+        <?php if (!empty($searchTerm) || ($currentStatus !== 'All')): ?>
+            <div style="width: 130px;">
+                <a href="order.php" class="btn btn-outline-danger w-100">Clear</a>
+            </div>
+        <?php endif; ?>
     </form>
 
     <!-- Result Table -->
