@@ -40,7 +40,7 @@ USE erp_db;
    `product_id` varchar(45) NOT NULL,
    `item_quantity` int(11) NOT NULL,
    `total_amount` decimal(10,2) NOT NULL,
-   `date_created` datetime DEFAULT current_timestamp(),
+   `date_placed` datetime DEFAULT current_timestamp(),
    `status` varchar(45) NOT NULL,
    `payment` varchar(45) NOT NULL,
    `discount` decimal(2,2) NOT NULL DEFAULT 0.00,
