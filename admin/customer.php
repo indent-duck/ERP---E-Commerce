@@ -58,7 +58,7 @@
 
                 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['search'])) {
                     $customer_search = $_POST['search'];
-                    $result = $conn->query("SELECT * FROM customers WHERE first_name LIKE '$customer_search%' OR last_name LIKE '$customer_search%' 
+                    $result = $conn->query("SELECT * FROM customers WHERE first_name LIKE '$customer_search%' OR last_name LIKE '$customer_search%'
                     ORDER BY
                     CASE WHEN first_name LIKE '$customer_search%' THEN 0
                     ELSE 1 END, first_name, last_name");
@@ -89,11 +89,11 @@
                             <table class="table table-hover table-md text-center">
                                 <colgroup>
                                     <col style="width: 12%">
-                                    <col style="width: 21.32">
-                                    <col style="width: 16.66">
-                                    <col style="width: 16.66">
-                                    <col style="width: 16.66">
-                                    <col style="width: 16.66">
+                                    <col style="width: 21.32%">
+                                    <col style="width: 16.66%">
+                                    <col style="width: 16.66%">
+                                    <col style="width: 16.66%">
+                                    <col style="width: 16.66%">
                                 </colgroup>
                                 <thead table class="table-light table-bordered">
                                     <tr>

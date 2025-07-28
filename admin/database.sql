@@ -58,9 +58,9 @@ INSERT INTO `erp_db`.`orders` (`customer_id`, `product_id`, `item_quantity`, `to
    `retail_price` decimal(10,2) NOT NULL,
    `specification` text NOT NULL,
    `quantity` int(11) NOT NULL,
-   `image1` varchar(45) DEFAULT NOT NULL,
-   `image2` varchar(45) DEFAULT NOT NULL,
-   `image3` varchar(45) DEFAULT NOT NULL,
+   `image1` varchar(45) NOT NULL,
+   `image2` varchar(45) NOT NULL,
+   `image3` varchar(45) NOT NULL,
    PRIMARY KEY (`product_id`)
  ) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
  
