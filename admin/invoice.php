@@ -37,7 +37,7 @@ if (isset($_GET['search'])) {
     </div>
 
     <div class="result-box">
-        <table class= "table table-bordered">
+        <table class= "table">
             <colgroup>
         <col style="width: 1.5%">
         <col style="width: 1%">
