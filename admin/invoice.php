@@ -1,9 +1,10 @@
-<?php include 'db_connection.php';
+<?php
+include 'db_connection.php';
 
 $search = '';
 if (isset($_GET['search'])) {
     $search = trim($_GET['search']);
-    $stmt = $conn->prepare("SELECT * FROM invoices WHERE customer_id LIKE CONCAT('%', ?, '%') OR order_id LIKE CONCAT('%', ?, '%') ORDER BY date_created DESC");
+    $stmt = $conn->prepare("SELECT * FROM invoices WHERE customer_id LIKE CONCAT('%', ?, '%') OR order_id LIKE CONCAT('%', ?, '%') ORDER BY date_placed DESC");
     $stmt->bind_param("ss", $search, $search);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -19,39 +20,44 @@ if (isset($_GET['search'])) {
     <meta charset="UTF-8">
     <title>Invoices</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="invoice-design.css">
+    <link rel="stylesheet" href="invoice_design.css">
 </head>
 <body>
 
-    <!-- 🔍 Search Box -->
+    
     <div class="search-box">
         <form method="GET" action="invoice.php" class="d-flex gap-2">
-            <input type="text" name="search" class="form-control" placeholder="Search by Customer ID or Order ID" value="<?= htmlspecialchars($search) ?>">
-            <button type="submit" class="btn btn-primary">Search</button>
-            <a href="invoice.php" class="btn btn-secondary">Reset</a>
+            <input type="text" name="search" class="form-control" placeholder="Search Order" value="<?= htmlspecialchars($search) ?>">
+            <button type="submit" class="btn btn-dark">Search</button>
+            <a href="invoice.php" class="btn btn-outline-danger">Clear</a>
         </form>
     </div>
 
+    
     <div class="result-box">
-        <table class= "table">
+        <table class="table">
             <colgroup>
-        <col style="width: 1.5%">
-        <col style="width: 1%">
-        <col style="width: 6%">
-        <col style="width: 0.5%">
-        <col style="width: 4%">
-        <col style="width: 7%">
-        <col style="width: 1%">
-
-        
+                <col style="width: 10%">
+                <col style="width: 10%">
+                <col style="width: 10%">
+                <col style="width: 6%">
+                <col style="width: 8%">
+                <col style="width: 12%">
+                <col style="width: 10%">
+                <col style="width: 12%">
+                <col style="width: 12%">
+                <col style="width: 10%">
             </colgroup>
             <thead>
                 <tr>
                     <th>Order ID</th>
                     <th>Customer ID</th>
-                    <th>Item</th>
-                    <th>Quantity</th>
-                    <th>Total Payment</th>
+                    <th>Product ID</th>
+                    <th>Qty.</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                    <th>Payment</th>
+                    <th>Date Placed</th>
                     <th>Date Completed</th>
                     <th>Status</th>
                 </tr>
@@ -63,12 +69,12 @@ if (isset($_GET['search'])) {
                             <td><?= htmlspecialchars($row['order_id']) ?></td>
                             <td><?= htmlspecialchars($row['customer_id']) ?></td>
                             <td><?= htmlspecialchars($row['product_id']) ?></td>
-                            <td><?= number_format($row['quantity']) ?></td>
-                            <td><?= number_format($row['total_payment'], 2) ?></td>
-                            <td><?= htmlspecialchars($row['date_completed']) ?></td>
-                            <td><?= htmlspecialchars($row['status']) ?></td>
-                            
-
+                            <td><?= htmlspecialchars($row['quantity'])?>x</td>
+                            <td><?= htmlspecialchars($row['discount'])?>%</td>
+                            <td>₱<?= number_format($row['total_payment'], 2) ?></td>
+                            <td><?= htmlspecialchars($row['payment_method']) ?></td>
+                            <td><?= date('Y-m-d', strtotime($row['date_placed'])) ?></td>
+                            <td><?= date('Y-m-d', strtotime($row['date_completed'])) ?></td>
                             <td>
                                 <?php
                                     $status = strtolower(trim($row['status']));
@@ -88,13 +94,12 @@ if (isset($_GET['search'])) {
                         </tr>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <tr>
-                        <td colspan="7" style="text-align: center;">No invoice records found.</td>
-                    </tr>
+                    <tr><td colspan="10" class="text-center">No invoice records found.</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>
     </div>
+
 </body>
 </html>
 
