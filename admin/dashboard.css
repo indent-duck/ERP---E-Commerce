@@ -1,5 +1,6 @@
 
 .container-fluid {
+    background-color: #f8f9fa;
     padding: 20px;
 }
 
@@ -25,10 +26,27 @@
     transform: scale(1.001);
 }
 
+.table-container {
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.table-container:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transform:  scale(1.001);
+}
+
 .positive {
     color:  #27AC49;
 }
 
 .negative {
     color: #c22020
+}
+
+table {
+    border-radius: 5px;
 }

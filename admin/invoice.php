@@ -1,8 +1,4 @@
-<?php
-$conn = new mysqli("localhost", "root", "", "erp_db");
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+<?php include 'db_connection.php';
 
 $search = '';
 if (isset($_GET['search'])) {
