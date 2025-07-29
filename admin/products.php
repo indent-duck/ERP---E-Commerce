@@ -11,6 +11,8 @@
 
 <div class="container-fluid">
   <div class="d-flex full-height">
+
+      <?php include 'sidebar.php'; ?>
   
     <div class="right-col">
       <div class="flex-grow-1 m-2 py-2 px-2">
@@ -55,16 +57,16 @@
             <thead>
               <tr>
                 <th>Product ID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Stock</th>
+                <th>Product Name</th>
+                <th>Retail Price</th>
+                <th>Quantity</th>
                 <th>Category</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <?php
-                $conn = new mysqli("localhost", "root", "", "erp");
+                $conn = new mysqli("localhost", "root", "", "erp_db");
 
                 if ($conn->connect_error) {
                   die("Connection failed: " . $conn->connect_error);
@@ -77,9 +79,9 @@
                 }
 
                 if ($currentStatus === 'Available') {
-                  $where .= " AND `Stock` > 0";
+                  $where .= " AND `quantity` > 0";
                 } elseif ($currentStatus === 'Out of Stock') {
-                  $where .= " AND `Stock` = 0";
+                  $where .= " AND `quantity` = 0";
                 }
 
                 $query = "SELECT * FROM products WHERE $where ORDER BY `product_id` ASC";
@@ -87,21 +89,22 @@
 
                 if ($result->num_rows > 0) {
                   while ($row = $result->fetch_assoc()) {
-                    $id = $row["product_id"];
+                    $raw_id = $row["product_id"]; // unformatted for link
+                    $id = str_pad($raw_id, 3, "0", STR_PAD_LEFT); // formatted as 001, 002, etc.
                     $name = htmlspecialchars($row["product_name"]);
-                    $price = number_format($row["price"], 2);
-                    $stock = $row["stock"];
+                    $retail_price = number_format($row["retail_price"], 2);
+                    $quantity = $row["quantity"];
                     $category = htmlspecialchars($row["category"]);
 
                     echo "
                       <tr class='align-middle product-row'>
                         <td>$id</td>
                         <td>$name</td>
-                        <td>₱$price</td>
-                        <td>$stock</td>
+                        <td>₱$retail_price</td>
+                        <td>$quantity</td>
                         <td>$category</td>
                         <td>
-                          <a href='product_details.php?id=$id' class='see-more-link'>See More...</a>
+                          <a href='product_details.php?id=$raw_id' class='see-more-link'>See More...</a>
                         </td>
                       </tr>";
                   }
@@ -121,3 +124,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
