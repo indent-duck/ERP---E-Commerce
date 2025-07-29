@@ -4,32 +4,40 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
 }
 
-/* ==== SEARCH BOX ==== */
+
 .search-box {
     padding: 20px;
     border: 1px solid #dee2e6;
-    border-radius: 10px;
+    border-radius: 12px;
     background-color: white;
     margin: 20px auto 10px auto;
     max-width: 1000px;
 }
 
-.search-box input.form-control,
-.search-box .btn {
-    border-radius: 8px;
+.search-box input.form-control {
+    border-radius: 12px;
+    background-color: #f1f1f1;
+    border: none;
 }
 
-/* ==== INVOICE TABLE ==== */
+.search-box .btn {
+    border-radius: 12px;
+    padding: 6px 20px;
+    font-weight: 500;
+}
+
+
 .result-box {
     border: 1px solid #dee2e6;
     background-color: white;
-    border-radius: 10px;
-    margin: 20px auto;
+    border-radius: 12px;
+    margin: 0 auto 20px auto;
     max-width: 1000px;
     overflow-x: auto;
 }
@@ -38,31 +46,32 @@ html, body {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
 }
 
 .result-box th,
 .result-box td {
-    padding: 12px 16px;
+    padding: 12px 14px;
     text-align: left;
     border-bottom: 1px solid #dee2e6;
     vertical-align: middle;
+    font-size: 14px;
 }
 
 .result-box thead th:first-child {
-    border-top-left-radius: 10px;
+    border-top-left-radius: 12px;
 }
 
 .result-box thead th:last-child {
-    border-top-right-radius: 10px;
+    border-top-right-radius: 12px;
 }
 
 .result-box tbody tr:last-child td {
     border-bottom: none;
 }
 
-/* ==== STATUS BADGES ==== */
+
 .badge {
     font-size: 0.8rem;
     padding: 6px 10px;
