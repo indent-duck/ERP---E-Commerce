@@ -1,16 +1,17 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "erp");
+$conn = new mysqli("localhost", "root", "", "erp_db");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get form values (must match form field names)
-    $name = $_POST['product_name'] ?? '';
-    $price = $_POST['price'] ?? 0;
-    $stock = $_POST['stock'] ?? 0;
+    $product_name = $_POST['product_name'] ?? '';
+    $cost_price = (float) $_POST['cost_price'] ?? 0;
+    $retail_price = (float) $_POST['retail_price'] ?? 0;
+    $specification = $_POST['specification'] ?? '';
     $category = $_POST['category'] ?? '';
-    $description = $_POST['description'] ?? '';
+    $quantity = $_POST['quantity'] ?? 0;
 
     // Validate required fields
-    if (empty($name)) {
+    if (empty($product_name)) {
         die("Product name is required.");
     }
 
@@ -32,14 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         move_uploaded_file($_FILES['image3']['tmp_name'], $uploadDir . $image3);
     }
 
-    $stmt = $conn->prepare("INSERT INTO products (product_name, price, stock, category, description, image1, image2, image3) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO products (product_id, product_name, cost_price, retail_price, specification, category, quantity, image1, image2, image3) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)");
 
     if (!$stmt) {
         die("Database error: " . $conn->error);
     }
 
-    $stmt->bind_param("sdisssss", $name, $price, $stock, $category, $description, $image1, $image2, $image3);
+    $stmt->bind_param("isddssisss", $product_id, $product_name, $cost_price, $retail_price, $specification, $category, $quantity, $image1, $image2, $image3);
 
     if ($stmt->execute()) {
         header("Location: products.php");
@@ -61,24 +62,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container-fluid">
   <div class="d-flex">
 
+    <?php include 'sidebar.php'; ?>
+
     <div class="right-col">
       <div class="flex-grow-1 py-5 px-2">
         <h3>Add New Product</h3>
 
         <form action="add-products.php" method="POST" enctype="multipart/form-data">
           <div class="mb-3">
-            <label class="form-label">Name</label>
+            <label class="form-label">Product Name</label>
             <input type="text" name="product_name" class="form-control" required>
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Price</label>
-            <input type="number" name="price" class="form-control" step="0.01" required>
+            <label class="form-label">Cost Price</label>
+            <input type="number" name="cost_price" class="form-control" step="0.01" required>
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Stock</label>
-            <input type="number" name="stock" class="form-control" required>
+            <label class="form-label">Retail Price</label>
+            <input type="number" name="retail_price" class="form-control" step="0.01" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Specification</label>
+            <textarea name="specification" class="form-control" rows="3" required></textarea>
           </div>
 
           <div class="mb-3">
@@ -87,8 +95,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Product Description</label>
-            <textarea name="description" class="form-control" rows="3" required></textarea>
+            <label class="form-label">Quantity</label>
+            <input type="number" name="quantity" class="form-control" required>
           </div>
 
           <label>Image 1</label>
