@@ -73,9 +73,9 @@ if (isset($_GET['search'])) {
                             <td><?= htmlspecialchars($row['customer_id']) ?></td>
                             <td><?= htmlspecialchars($row['product_id']) ?></td>
                             <td><?= htmlspecialchars($row['quantity']) ?>x</td>
-                            <td><?= htmlspecialchars($row['discount']) ?>%</td>
+                            <td><?= htmlspecialchars($row['discount_applied']) ?>%</td>
                             <td>₱<?= number_format($row['total_payment'], 2) ?></td>
-                            <td><?= htmlspecialchars($row['payment_method']) ?></td>
+                            <td><?= htmlspecialchars($row['payment']) ?></td>
                             <td><?= date('Y-m-d', strtotime($row['date_placed'])) ?></td>
                             <td><?= date('Y-m-d', strtotime($row['date_completed'])) ?></td>
                             <td>

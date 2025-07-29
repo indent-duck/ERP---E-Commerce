@@ -28,9 +28,9 @@
 
 .table-container {
     border: 1px solid #dee2e6;
+    background-color: white;
     border-radius: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px;
     transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
