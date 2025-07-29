@@ -18,6 +18,10 @@ input[type="text"] {
     border-radius: 5px;
 }
 
+.col-2 {
+    width: 100%;
+}
+
 #top-button {
     margin-left: 5px;
     transition: background 0.2s, color 0.2s;

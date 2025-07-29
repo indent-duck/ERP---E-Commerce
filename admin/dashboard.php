@@ -108,6 +108,63 @@ function numberSign($percentage) {
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col">
+                    <h4 class="text-secondary">Recent Orders</h4>
+                    <div class="table-container">
+                        <table class="table table-hover">
+                            <colgroup>
+                                <col style="width: 15%";>
+                                <col style="width: 25%";>
+                                <col style="width: 20%";>
+                                <col style="width: 20%";>
+                                <col style="width: 20%";>
+                            </colgroup>
+                            <thead class="table-light">
+                                <th class="text-center">Order Id</th>
+                                <th>Item</th>
+                                <th>Total</th>
+                                <th>Date Placed</th>
+                                <th>Payment</th>
+                            </thead>
+
+                            <?php
+                            $recent_order = $conn->query("SELECT o.order_id as order_id, p.product_name as product_name,
+                                o.item_quantity as quantity, o.total_amount as total_amount, o.date_placed as date_placed, o.payment as payment
+                                    FROM orders o INNER JOIN products p ON o.product_id = p.product_id LIMIT 5;");
+
+                            if ($recent_order && $recent_order-> num_rows > 0) {
+                                while ($row = $recent_order->fetch_assoc()) {
+                                    $order_id = $row['order_id'];
+                                    $item = $row['product_name'];
+                                    $quantity = $row['quantity'];
+                                    $total_amount = $row['total_amount'];
+                                    $date_placed = $row['date_placed'];
+                                    $payment = $row['payment'];
+                            ?>
+                            <tbody>
+                                <tr>
+                                    <th class="text-center"><?= $order_id ?></th>
+                                    <td><?= $item ?> <label class="text-secondary" style="font-size: 14px">x<?=$quantity?></label></td>
+                                    <td>₱ <?= number_format($total_amount, 2) ?></td>
+                                    <td><?= $date_placed ?></td>
+                                    <td><?= $payment ?></td>
+                                </tr>
+                            </tbody>
+                            <?php }
+                        } else { ?>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        <?php }  ?>
+                        
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </body>
 </html>

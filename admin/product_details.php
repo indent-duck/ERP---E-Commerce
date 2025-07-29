@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "erp");
+$conn = new mysqli("localhost", "root", "", "erp_db");
 
 if (isset($_GET['id'])) {
   $id = (int)$_GET['id']; 
@@ -32,23 +32,31 @@ if (isset($_GET['id'])) {
   <div class="container-fluid">
     <div class="d-flex full-height"></div>
 
+        <?php include 'sidebar.php'; ?>
+
+
     <div class="right-col">
       <div class="flex-grow-1 py-5 px-2">
-        <a href="products.php" class="btn btn-secondary mb-4">Back to Products</a>
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="products.php" class="btn btn-secondary mb-0">Back to Products</a>
+        </div>
 
         <div class="card-body">
           <h3 class="card-title"><?= htmlspecialchars($product['product_name']) ?></h3>
-          <p><strong>Price:</strong> ₱<?= number_format($product['price'], 2) ?></p>
-          <p><strong>Stock:</strong> <?= $product['stock'] ?></p>
+          <p><strong>Product ID:</strong> <?= str_pad($product['product_id'], 3, '0', STR_PAD_LEFT) ?></p>
+          <p><strong>Cost Price:</strong> ₱<?= number_format($product['cost_price'], 2) ?></p>
+          <p><strong>Retail Price:</strong> ₱<?= number_format($product['retail_price'], 2) ?></p>
+          <p><strong>Quantity:</strong> <?= $product['quantity'] ?></p>
           <p><strong>Category:</strong> <?= htmlspecialchars($product['category']) ?></p>
 
-          <div class="description-container">
-                <div class="description-label">Product Description</div>
-                <div class="description-box">
-                    <p><?= nl2br(htmlspecialchars($product['description'])) ?></p>
+
+          <div class="specification-container">
+                <div class="label-tag">Specification</div>
+                <div class="specification-box">
+                    <p><?= nl2br(htmlspecialchars($product['specification'])) ?></p>
                 </div>
                 <div class="image-container">
-                    <div class="image-label">Images</div>
+                    <div class="label-tag">Images</div>
                     <div class="row gx-3">
                         <?php foreach ($images as $img): ?>
                         <div class="col-6 col-md-4 col-lg-3">
