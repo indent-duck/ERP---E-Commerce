@@ -20,7 +20,7 @@
             $invoice_sum_total = $conn->query("SELECT SUM(total_payment) as total FROM invoices WHERE status != 'returned';")->fetch_assoc()['total'];
             $orders_sum_total = $conn->query("SELECT SUM(total_amount) as total FROM orders WHERE payment != 'COD';")->fetch_assoc()['total'];
             $avg_spent = 0;
-            if (isset($invoice_sum) || isset($orders_sum_total)) {
+            if (isset($invoice_sum) || isset($orders_sum_total) && ($total_customers > 0)) {
                 $avg_spent = ($invoice_sum_total + $orders_sum_total) / $total_customers;
             }
             ?>
