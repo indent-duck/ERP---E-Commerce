@@ -16,24 +16,27 @@ if (isset($_GET['search'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Invoices</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="invoice_design.css">
 </head>
+
 <body>
 
-    
+
     <div class="search-box">
         <form method="GET" action="invoice.php" class="d-flex gap-2">
-            <input type="text" name="search" class="form-control" placeholder="Search Order" value="<?= htmlspecialchars($search) ?>">
+            <input type="text" name="search" class="form-control" placeholder="Search Order"
+                value="<?= htmlspecialchars($search) ?>">
             <button type="submit" class="btn btn-dark">Search</button>
             <a href="invoice.php" class="btn btn-outline-danger">Clear</a>
         </form>
     </div>
 
-    
+
     <div class="result-box">
         <table class="table">
             <colgroup>
@@ -69,38 +72,43 @@ if (isset($_GET['search'])) {
                             <td><?= htmlspecialchars($row['order_id']) ?></td>
                             <td><?= htmlspecialchars($row['customer_id']) ?></td>
                             <td><?= htmlspecialchars($row['product_id']) ?></td>
-                            <td><?= htmlspecialchars($row['quantity'])?>x</td>
-                            <td><?= htmlspecialchars($row['discount'])?>%</td>
+                            <td><?= htmlspecialchars($row['quantity']) ?>x</td>
+                            <td><?= htmlspecialchars($row['discount']) ?>%</td>
                             <td>₱<?= number_format($row['total_payment'], 2) ?></td>
                             <td><?= htmlspecialchars($row['payment_method']) ?></td>
                             <td><?= date('Y-m-d', strtotime($row['date_placed'])) ?></td>
                             <td><?= date('Y-m-d', strtotime($row['date_completed'])) ?></td>
                             <td>
                                 <?php
-                                    $status = strtolower(trim($row['status']));
-                                    $badgeClass = match($status) {
-                                        'delivered' => 'status-delivered',
-                                        'shipped' => 'status-shipped',
-                                        'processing' => 'status-processing',
-                                        'cancelled' => 'status-cancelled',
-                                        'pending' => 'status-pending',
-                                        'refunded' => 'status-refunded',
-                                        'completed' => 'status-completed',
-                                        default => 'status-default'
-                                    };
+                                $status = strtolower(trim($row['status']));
+                                $badgeClass = match ($status) {
+                                    'delivered' => 'status-delivered',
+                                    'shipped' => 'status-shipped',
+                                    'processing' => 'status-processing',
+                                    'cancelled' => 'status-cancelled',
+                                    'pending' => 'status-pending',
+                                    'refunded' => 'status-refunded',
+                                    'completed' => 'status-completed',
+                                    default => 'status-default'
+                                };
                                 ?>
                                 <span class="badge <?= $badgeClass ?>"><?= ucfirst($status) ?></span>
                             </td>
                         </tr>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <tr><td colspan="10" class="text-center">No invoice records found.</td></tr>
+
+                    <tr>
+                        <td colspan="10" class="text-center">No invoice records found.</td>
+                    </tr>
+
                 <?php endif; ?>
             </tbody>
         </table>
     </div>
 
 </body>
+
 </html>
 
 <?php $conn->close(); ?>
