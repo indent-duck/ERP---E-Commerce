@@ -28,7 +28,7 @@
         ?>
 
         <!-- Search Input -->
-        <div class="flex-grow-1 me-5" style="max-width: 500px;">
+        <div class="flex-grow-1 me-4" style="max-width: 500px;">
             <input 
                 type="text" 
                 name="search" 
