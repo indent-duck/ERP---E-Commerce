@@ -1,0 +1,107 @@
+
+/* page background */
+.container-fluid {
+    background-color: rgb(245, 252, 254);
+}
+
+/* both sides (left and right) */
+.page-row {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 100vh;
+    display: flex;
+}
+
+.left-col, .right-col {
+    border: 1px solid #EAEAEA;
+    border-radius: 5px;
+}
+
+/* options bar (left)*/
+.left-col {
+    margin-right: 5px;
+    background-color: #EAEAEA;
+    width: 17%;
+}
+
+.top-text-container {
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+
+
+
+.row {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#option-button-selected, #option-button {
+    min-width: 100%;
+    text-align: left;
+}
+
+#sub-button {
+    min-width: 100%;
+    text-align: left;
+}
+
+.button-container {
+    min-width: 85%;
+}
+
+/* button hovering */
+
+.highlight-button{
+    font-weight: semi-bold;
+    transition: background 0.2s, color 0.2s;
+}
+
+.highlight-button:hover {
+    background: #727272;
+    color: #EAEAEA;
+    transform: scale(1.02);
+}
+
+/* current selected button */
+.highlight-button.selected {
+    transform: scale(1.02);
+    background-color: #222222;
+    color: #EAEAEA;
+}
+
+.highlight-button.selected:hover {
+    background-color: #585757;
+}
+
+
+
+/* content area (right) */
+
+.right-col {
+    background-color: white;
+    width: 83%;
+}
+
+.content-header {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.frame-container {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    height: 87vh;
+    max-height: 87vh;
+}
