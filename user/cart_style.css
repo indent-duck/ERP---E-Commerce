@@ -1,0 +1,72 @@
+body {
+  background-color: white; /* #f5f5f5 Light gray background */
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.result-box {
+  border: 1.5px solid black;
+  border-radius: 10px;
+  background-color: white;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+/* Product card inside result-box */
+.product-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding-top: 10px;
+}
+
+.product-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-info {
+  flex-grow: 1;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qty-controls button {
+  padding: 2px 8px;
+  border: 1px solid #000;
+  background: white;
+  font-size: 16px;
+  font-weight: bold;
+  width: 30px;
+  border-radius: 5px;
+}
+
+.qty-count {
+  display: inline-block;
+  min-width: 20px;
+  text-align: center;
+}
+
+.image-box {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  background-color: #e0e0e0; /* Light gray fallback */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
