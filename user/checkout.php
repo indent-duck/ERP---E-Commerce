@@ -192,12 +192,12 @@ $total = $merch_subtotal + $shipping_fee - $store_discount;
     <!-- Place Order button -->
     <div class="fixed-bottom bg-light p-3 border-top d-flex justify-content-between align-items-center shadow">
         <div>
-            <strong>Total: ₱<?= number_format($total, 2) ?></strong><br>
-            <strong>Total Discount: ₱<?= number_format($store_discount, 2) ?></strong>
+            <p class="mb-0 small">Total Discount: ₱<?= number_format($store_discount, 2) ?></p>
+            <h5 class="mb-1">Total: ₱<?= number_format($total, 2) ?></h5>
         </div>
         <button type="submit" name="place_order" class="btn btn-danger px-4">Place Order</button>
     </div>
-    </form>
+</form>
 </div>
 
 </body>
