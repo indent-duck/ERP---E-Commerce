@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="user_template.css">
+    </head>
+    <body>
+        <script>
+            function changeIFrame(frame) {
+                document.getElementById('content-frame').src = frame;
+            }
+
+            function changeHeader(newHeader) {
+                const header = document.getElementById('header-title');
+                header.textContent = newHeader;
+            }
+
+            function highlightButton(selected_button) {
+                const buttons = document.querySelectorAll('.highlight-button');
+                buttons.forEach(button => {
+                    button.classList.remove('selected');
+                });
+                selected_button.classList.add('selected');
+            }
+
+            function reloadIframe() {
+            const iframe = document.getElementById('content-frame');
+            iframe.src = iframe.src;
+            }
+
+        </script>
+
+        <div class="container-fluid"> <!-- background -->
+            <div class="page-row">
+
+                <!-- side bar -->
+                <div class="left-col">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col top-text-container" style="border-bottom: 1px solid #636363;">
+                                <header class="card-header" id="sidebar-header">
+                                    <h5>Sales Management</h5>
+                                    <h6>Order and Customer System</h6>
+                                </header>
+                            </div>
+                        </div>
+                        <div class="row"> <!-- buttons set 1-->
+                            <div class="buttons-container" style="align-self: center; border-bottom: 1px solid #636363;">
+                                <div class="row">
+                                    <div class="col">
+                                        <button onclick="changeIFrame('home.php'); highlightButton(this); changeHeader('Home')"
+                                            class="btn fw-semibold highlight-button selected" id="option-button">Home</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button onclick="changeIFrame('products.php'); highlightButton(this); changeHeader('Products')"
+                                            class="btn fw-semibold highlight-button" id="option-button">Products</button>
+                                    </div>
+                                </div>
+
+                                    <!-- products categories -->
+                                <div class="row">
+                                    <div class="col">
+                                        <button onclick="changeIFrame('products.php'); highlightButton(this); changeHeader('Products')"
+                                            class="btn fw-semibold btn-sm highlight-button ps-4" id="sub-button">Category 1</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button onclick="changeIFrame('products.php'); highlightButton(this); changeHeader('Products')"
+                                            class="btn fw-semibold btn-sm highlight-button ps-4" id="sub-button">Category 2</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button onclick="changeIFrame('products.php'); highlightButton(this); changeHeader('Products')"
+                                            class="btn fw-semibold btn-sm highlight-button ps-4" id="sub-button">Category 2</button>
+                                    </div>
+                                </div>
+                                    <!-- end -->
+                                    
+                                <div class="row">
+                                    <div class="col">
+                                        <button onclick="changeIFrame('products.php'); highlightButton(this); changeHeader('Cart')"
+                                            class="btn fw-semibold highlight-button" id="option-button">Cart</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button onclick="changeIFrame('products.php'); highlightButton(this); changeHeader('Transactions')"
+                                            class="btn fw-semibold highlight-button" id="option-button">Transaction</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row"> <!-- buttons set 2 -->
+                            <div class="buttons-container" style="align-self: center;">
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6>Help Center</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button onclick="changeIFrame('products.php'); highlightButton(this); changeHeader('Settings')"
+                                            class="btn fw-semibold btn-sm highlight-button ps-4" id="sub-button">Settings</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button onclick="changeIFrame('products.php'); highlightButton(this); changeHeader('Help')"
+                                            class="btn fw-semibold btn-sm highlight-button ps-4" id="sub-button">Help</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                
+                <!-- content -->
+                <div class="right-col">
+                    <div class="content-header">
+                        <div class="row justify-content-between g-0">
+                            <div class="col-5">
+                                <h1 class="ps-4" id="header-title">Home</h1>
+                            </div>
+                            <div class="col-1 text-end pe-3">
+                                <!-- profile button -->
+                                <button class="btn p-0 border-0" onclick="changeIFrame('profile.php'); changeHeader('Profile')" 
+                                    style="width: 50px; height: 50px; border-radius: 50%;"">
+                                    <img src="snopi.jpg" alt="Profile" class="rounded-circle" style="width: 50px; height: 50px; 
+                                        border: 1px solid black;">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="frame-container">
+                        <iframe id="content-frame" src="dashboard.php" class="frame" title="Sales Management - admin"></iframe>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </body>
+</html>
